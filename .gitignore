@@ -1,3 +1,6 @@
 __pycache__
 venv/
 .env
+git.txt
+db_info.txt
+example_sql_queries.txt
