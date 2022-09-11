@@ -44,4 +44,4 @@ app.include_router(vote.router)
 # function --> root --> contains all the logic to perform some type of task, as seen below with a return statement
 def root():
     # returns data that's converted into JSON and returned to the user
-    return {"message": "Hello World! Welcome to my API!"}
+    return {"message": "Hello World! Welcome to my API!!!!!!"}
