@@ -1,0 +1,113 @@
+# to view autocreated documentation for FastAPI (powered by Swagger UI) go to --> http://127.0.0.1:8000/docs -- or use --> http://127.0.0.1:8000/redoc
+
+# path operation for FastAPI
+# remember order matters with the path operations
+# POSTMAN GET ALL Posts
+# GET http://127.0.0.1:8000/
+
+'''sqlalchemy test post'''
+# @app.get("/sqlalchemy")
+# def test_post(db: Session = Depends(get_db)):
+#     tested_post = db.query(models.Post).all()
+#     return {"data": tested_post}
+
+
+# POSTMAN POST CREATE Posts
+    # POST http://127.0.0.1:8000/posts
+# @app.post("/createposts")
+# def create_posts(payload: dict = Body):
+#     print(payload) # output to the CLI
+#     # variable -- payload: dict = Body [import Body from FastAPI library (params)] --> stores the data that is returned
+#     # above will --> extract all of the fields data from the Body --> convert the fields data into a python dictionary --> store the data into the payload variable
+#     #return {"message": "Successfully created posts."}
+#     return {"new_post:": f"title: {payload['title']} content: {payload['content']}"}
+
+"""To send data inside of POSTMAN
+--> body -- raw -- json
+{
+    "title": "Top beaches in the world!",
+    "content": "Check out these awesome beaches!"    
+}
+And then to retreive that data use a variable like --> (payload: dict = Body) and a return{} statement, as shown above
+"""
+
+# before working with databases:
+my_posts = [
+    {
+        "title": "title of post 1",
+        "content": "content of post 1",
+        "id": 1
+    },
+    {
+        "title": "favorite foods",
+        "content": "i love pizza",
+        "id": 2     
+    }]
+
+def find_post(id):
+    for post in my_posts:
+        if post['id'] == id:
+            return post
+        
+def find_index_post(id):
+    for index, post in enumerate(my_posts):
+        if post['id'] == id:
+            return index
+
+table: represent a subject or an event in an application
+    - Users
+    - Products
+    - Purchases
+these tables will have relationships with one another
+
+    - a table is made up of columns and rows
+    - each colums represents a different attribute with the associate data type that will be used for that column
+        - id
+        - name
+        - age
+        - sex
+        - etc.
+    - each row represents a different entry in the table
+        - a specific entry in each column
+
+    - when creating a table we need a primary key (pk)
+        - a pk is a column or a group of columns that uniquely identifies each row in a table 
+         - for example: id, or email, etc.
+        - a table can have one and only one pk
+        - each entry must be unique, NO DUPLICATES
+
+    - Unique Constraints
+        - a UNIQUE Constraint can be applied to any column to make sure every record has a unique value for that column.
+
+    - Null Constraints
+        - by default, when adding a new entry to a database, any column can be left blank. When a column is left blank, it has a NULL value
+        - if you need for a column to be properly filled in, to create a new record, a NOT NULL constraint can be added to the column to ensure the column is never left blank
+
+
+To access environment variables on a MAC:
+On a prod environment you will set the variables to your machine, not on a dev environment.
+# to set:
+command: export MY_DB_URL="localhost:5432"
+# to view/read:
+command: printenv
+# to access:
+command: echo $MY_DB_URL
+
+# set environment variables in a .env file in your code
+# use pydantic to perform all of our environment variable validation
+
+#migration tool to use is alembic
+command: pip install alembic
+alembic init alembic
+
+#auto_creating with alembic
+command: alembic revision --autogenerate -m "add auto-generated vote table"
+command: alembic upgrade heads
+
+# cors  middleware stuff:
+fetch('http://localhost:8000/').then(res => res.json()).then(console.log)
+
+# requirements.txt with third-party packages
+pip freeze > requirements.txt
+for others to use:
+pip install -r requirements.txt
